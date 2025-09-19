@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Redirecting…</title>
+<script>
+(function () {
+var l = window.location;
+
+  // Set this:
+  // - 0 for a user/org site: https://username.github.io
+  // - 1 for a project site:   https://username.github.io/repo-name
+  var segmentsToKeep = 1; // change to 0 if you’re on a user/org site or custom domain
+
+  var base = l.protocol + '//' + l.host +
+             l.pathname.split('/').slice(0, 1 + segmentsToKeep).join('/') + '/';
+
+  var path = l.pathname.split('/').slice(1 + segmentsToKeep).join('/');
+  var newUrl = base + '?p=/' + path +
+               (l.search ? '&q=' + encodeURIComponent(l.search.slice(1)) : '') +
+               l.hash;
+
+  l.replace(newUrl); // use replace to avoid back-button loops
+})();
+
+</script>
+</head>
+<body>Redirecting…</body>
+</html>
